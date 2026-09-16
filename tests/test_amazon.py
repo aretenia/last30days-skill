@@ -616,7 +616,8 @@ class _Item:
 
 
 class TestSourceItemEnrichment:
-    def test_reviews_and_stats_land_on_item_metadata(self):
+    def test_reviews_and_stats_land_on_item_metadata(self, monkeypatch):
+        monkeypatch.setattr(amazon, "_today", lambda: TODAY)
         items = [_Item("B000000001"), _Item("B000000002")]
         amazon.enrich_source_items(
             items, depth="default", keyword="bentgo lunch box",
